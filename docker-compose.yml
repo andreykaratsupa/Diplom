@@ -3,9 +3,11 @@ version: "3.7"
 services:
   mysql:
     image: mysql:latest
+    ports:
+      - '3306:3306'
     restart: always
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
-      - MYSQL_DATABASE=database_name
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=user_passwd
+      - MYSQL_DATABASE=app
+      - MYSQL_USER=app
+      - MYSQL_PASSWORD=pass
