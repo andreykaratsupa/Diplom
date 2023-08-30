@@ -5,18 +5,14 @@ plugins {
 
 group 'ru.netology'
 version '1.0-SNAPSHOT'
-
-compileJava {
-    sourceCompatibility = 11
-    targetCompatibility = 11
-}
+sourceCompatibility = 11
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
 allure {
-    version = '2.20.1'
+    version = '2.24.0'
     useJUnit5 {
-        version = '2.20.1'
+        version = '5.10.0'
     }
 }
 
@@ -25,23 +21,25 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
-    testImplementation 'com.codeborne:selenide:5.16.2';
-    testImplementation 'com.codeborne:selenide:5.3.1';
-    testImplementation 'com.codeborne:selenide:6.17.1';
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testImplementation 'com.codeborne:selenide:6.17.2';
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
-    testImplementation 'mysql:mysql-connector-java:8.0.28'
-    implementation 'org.postgresql:postgresql:42.5.2'
+    testImplementation 'mysql:mysql-connector-java:8.0.33'
+    implementation 'org.postgresql:postgresql:42.6.0'
     testImplementation 'io.rest-assured:rest-assured:5.3.1'
     testImplementation 'com.google.code.gson:gson:2.10.1'
     compileOnly 'org.projectlombok:lombok:1.18.28'
     annotationProcessor 'org.projectlombok:lombok:1.18.28'
-    testImplementation 'commons-dbutils:commons-dbutils:1.7'
+    testImplementation 'commons-dbutils:commons-dbutils:1.8.0'
     testCompileOnly 'org.projectlombok:lombok:1.18.28'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
-    testImplementation 'io.qameta.allure:allure-selenide:2.20.1'
+    testImplementation 'io.qameta.allure:allure-selenide:2.24.0'
 }
 
 test {
     useJUnitPlatform()
+    systemProperty 'selenide.headless', System.getProperty('selenide.headless')
+    systemProperty 'db.url', System.getProperty('db.url',"http://localhost:8080")
+    systemProperty 'db.user', System.getProperty('db.user', "app")
+    systemProperty 'db.password', System.getProperty('db.password', "pass")
 }

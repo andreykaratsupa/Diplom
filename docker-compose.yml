@@ -18,3 +18,8 @@ services:
       POSTGRES_PASSWORD: pass
     ports:
       - '5432:5432'
+  node-app:
+    build: .
+    image: node-app:1.0
+    ports:
+        - '9999:9999'

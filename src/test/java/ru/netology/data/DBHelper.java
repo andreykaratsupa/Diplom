@@ -1,20 +1,24 @@
 package ru.netology.data;
 
 import lombok.SneakyThrows;
-import lombok.val;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class DBHelper {
+    private static final String url = System.getProperty("db.url");
+    private static final String user = System.getProperty("db.user");
+    private static final String password = System.getProperty("db.password");
     private static final QueryRunner runner = new QueryRunner();
+
     private DBHelper() {
     }
-    private static Connection getConn() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass");
+
+    @SneakyThrows
+    private static Connection getConn() {
+        return DriverManager.getConnection(url, user, password);
     }
 
     @SneakyThrows
@@ -25,36 +29,30 @@ public class DBHelper {
         runner.execute(connection, "DELETE FROM payment_entity");
     }
 
+    @SneakyThrows
     public static String getPaymentStatus() {
-        val codesSQL = "SELECT status FROM payment_entity;";
+        var codesSQL = "SELECT status FROM payment_entity ORDER BY created_date DESC LIMIT 1;";
         return getData(codesSQL);
     }
 
+    @SneakyThrows
     public static String getCreditRequestStatus() {
-        val codesSQL = "SELECT status FROM credit_request_entity;";
+        var codesSQL = "SELECT status FROM credit_request_entity ORDER BY created_date DESC LIMIT 1;";
         return getData(codesSQL);
     }
 
+    @SneakyThrows
     public static String getOrderCount() {
-        Long count = null;
-        val codesSQL = " SELECT COUNT(*) FROM order_entity;";
-        val runner = new QueryRunner();
-        try (val conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass")) {
-            count = runner.query(conn, codesSQL, new ScalarHandler<>());
-        } catch (SQLException e) {
-            System.out.println("SQL exception in getOrderCount: " + e.getMessage());
-        }
-        return Long.toString(count);
+        var codeSQL = "SELECT COUNT(*) FROM order_entity ORDER BY created_date DESC LIMIT 1;";
+        var conn = getConn();
+        var runner = new QueryRunner();
+        return runner.query(conn, codeSQL, new ScalarHandler<>());
     }
 
+    @SneakyThrows
     private static String getData(String query) {
-        String data = "";
-        val runner = new QueryRunner();
-        try (val conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass")) {
-            data = runner.query(conn, query, new ScalarHandler<>());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return data;
+        var runner = new QueryRunner();
+        var conn = getConn();
+        return runner.query(conn, query, new ScalarHandler<>());
     }
 }
