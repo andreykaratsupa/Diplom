@@ -51,8 +51,8 @@ public class DBHelper {
 
     @SneakyThrows
     private static String getData(String query) {
-        var runner = new QueryRunner();
         var conn = getConn();
+        var runner = new QueryRunner();
         return runner.query(conn, query, new ScalarHandler<>());
     }
 }
