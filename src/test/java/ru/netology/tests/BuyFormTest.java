@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BuyFormTest {
-    public static String url = System.getProperty("db.url");
+    public static String url = System.getProperty("sut.url");
 
     @BeforeEach
     public void openPage() {
