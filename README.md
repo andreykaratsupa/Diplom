@@ -28,4 +28,6 @@
 5. Отчет о тестировании:
 
    Отчет формируется через Allure.
-    Для этого нужно ввести команду - ./gradlew allureServe 
+    Для этого нужно ввести команду - ./gradlew allureServe
+
+6. Отчетные документы: [Report](https://github.com/andreykaratsupa/Diplom/blob/master/Report.md) и [Summary](https://github.com/andreykaratsupa/Diplom/blob/master/Summary.md)
