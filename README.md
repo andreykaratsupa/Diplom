@@ -6,22 +6,28 @@
 
 2. В 1-ом терминале запускаем контейнеры с образами Баз Данных (MySql, PostgresQl) и симулятором gate-simulator командой - Docker-compose up
 
-3.1. Во 2-ом терминале запускаем наше приложение с базой MySQL командой:
+3.
+* Во 2-ом терминале запускаем наше приложение с базой MySQL командой:
       java -
       Dspring.datasource.url=jdbc:mysql://localhost:3306/app -
       Dspring.datasource.username=app -
       Dspring.datasource.password=pass -jar aqa-shop.jar
 
-3.2. Или во 2-ом терминале запускаем наше приложение с базой PostgresSQL командой:
+* Или во 2-ом терминале запускаем наше приложение с базой PostgresSQL командой:
       java -
       Dspring.datasource.url=jdbc:postgresql://localhost:5432/app -
       Dspring.datasource.username=app -
       Dspring.datasource.password=pass -jar aqa-shop.jar
 
 4. Запускаем тесты:
+   
    Команда для MySQL - ./gradlew clean test "-Ddb.url=jdbc:mysql://localhost:3306/app"
+   
    Команда для Postgres - ./gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432/app"
 
 5. Отчет о тестировании:
-    Отчет формируется через Allure.
-    Для этого нужно ввести команду - ./gradlew allureServe 
+
+   Отчет формируется через Allure.
+    Для этого нужно ввести команду - ./gradlew allureServe
+
+6. Отчетные документы: [Report](https://github.com/andreykaratsupa/Diplom/blob/master/Report.md) и [Summary](https://github.com/andreykaratsupa/Diplom/blob/master/Summary.md)

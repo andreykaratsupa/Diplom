@@ -3,4 +3,6 @@ target/
 *.iml
 .gradle/
 build/
+.build/
 gate-simulator/node_modules/
+data/
