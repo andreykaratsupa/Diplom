@@ -31,22 +31,23 @@ public class DBHelper {
 
     @SneakyThrows
     public static String getPaymentStatus() {
-        var codesSQL = "SELECT status FROM payment_entity ORDER BY created_date DESC LIMIT 1;";
+        var codesSQL = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1;";
         return getData(codesSQL);
     }
 
     @SneakyThrows
     public static String getCreditRequestStatus() {
-        var codesSQL = "SELECT status FROM credit_request_entity ORDER BY created_date DESC LIMIT 1;";
+        var codesSQL = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1;";
         return getData(codesSQL);
     }
 
     @SneakyThrows
     public static String getOrderCount() {
-        var codeSQL = "SELECT COUNT(*) FROM order_entity ORDER BY created_date DESC LIMIT 1;";
+        var codeSQL = "SELECT COUNT(*) FROM order_entity";
         var conn = getConn();
         var runner = new QueryRunner();
-        return runner.query(conn, codeSQL, new ScalarHandler<>());
+        var query = runner.query(conn, codeSQL, new ScalarHandler<>());
+        return query.toString();
     }
 
     @SneakyThrows
