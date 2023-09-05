@@ -20,9 +20,12 @@
       Dspring.datasource.password=pass -jar aqa-shop.jar
 
 4. Запускаем тесты:
+   
    Команда для MySQL - ./gradlew clean test "-Ddb.url=jdbc:mysql://localhost:3306/app"
+   
    Команда для Postgres - ./gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432/app"
 
 5. Отчет о тестировании:
-    Отчет формируется через Allure.
+
+   Отчет формируется через Allure.
     Для этого нужно ввести команду - ./gradlew allureServe 
