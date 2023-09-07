@@ -56,23 +56,23 @@ public class CreditForm {
     }
 
     public void waitNotificationWrongFormat() {
-        wrongFormatError.shouldHave(Condition.text("Неверный формат"), Duration.ofSeconds(15))
+        wrongFormatError.shouldHave(Condition.text("Неверный формат"))
                 .shouldBe(Condition.visible);
     }
 
     public void waitNotificationExpirationDateError() {
-        cardExpirationDateError.shouldHave(Condition.text("Неверно указан срок действия карты"), Duration.ofSeconds(15))
+        cardExpirationDateError.shouldHave(Condition.text("Неверно указан срок действия карты"))
                 .shouldBe(Condition.visible);
     }
 
     public void waitNotificationExpiredError() {
-        cardExpiredError.shouldHave(Condition.text("Истёк срок действия карты"), Duration.ofSeconds(15))
+        cardExpiredError.shouldHave(Condition.text("Истёк срок действия карты"))
                 .shouldBe(Condition.visible);
     }
 
     public void waitNotificationWrongFormat4Fields() {
         assertEquals(4, wrongFormat4Error.size());
-        requiredFieldError.shouldHave(Condition.text("Поле обязательно для заполнения"), Duration.ofSeconds(15))
+        requiredFieldError.shouldHave(Condition.text("Поле обязательно для заполнения"))
                 .shouldBe(Condition.visible);
     }
 }
